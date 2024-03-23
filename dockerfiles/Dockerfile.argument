@@ -1,7 +1,9 @@
-# Test a docker file with argument
+# Docker file with argument
 
-# Declare an argument
+## Declare an argument
 ARG node_version=18-alpine
+
+## Use the argument
 FROM node:$node_version
 
 RUN echo 'Hello world $node_version'
