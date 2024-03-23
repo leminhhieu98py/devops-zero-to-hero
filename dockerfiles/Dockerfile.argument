@@ -7,3 +7,10 @@ ARG node_version=18-alpine
 FROM node:$node_version
 
 RUN echo 'Hello world $node_version'
+
+# Hint
+# Build image
+# docker build . -t image-argument -f dockerfiles/Dockerfile.argument
+
+# Run container
+# docker run -it -d --name container-argument -p 1001:80 image-argument
