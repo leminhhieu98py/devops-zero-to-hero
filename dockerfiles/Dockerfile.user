@@ -1,0 +1,14 @@
+# Dockerfile with user --> security
+
+FROM ubuntu:latest
+
+# # Register a new user
+RUN useradd user_1
+USER user_1
+
+# Hint
+# Build image
+# docker build . -t image-user -f dockerfiles/Dockerfile.user
+
+# Run container
+# docker run -it -d --name container-user image-user
