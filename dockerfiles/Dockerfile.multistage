@@ -1,0 +1,17 @@
+# Multistage in Dockerfile
+ARG DIR=/otis_path
+FROM node:18-alpine as STAGE1
+WORKDIR $DIR
+RUN touch text.txt
+RUN echo "Hello Otis" >> text.txt
+
+FROM ubuntu:latest
+WORKDIR /not_otis_path
+COPY --from=STAGE1 $DIR/text.txt .
+
+# Hint
+# Build image
+# docker build . -t image-multi-stage -f dockerfiles/Dockerfile.multistage
+
+# Run container
+# docker run -it -d --name container-multi-stage image-multi-stage
