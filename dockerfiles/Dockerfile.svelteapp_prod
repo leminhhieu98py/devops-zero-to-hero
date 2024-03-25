@@ -1,0 +1,34 @@
+# Dockerfile to start a sample svelte project
+ARG DIR=/svelte-app-prod
+
+FROM node:18-alpine as BUILDER
+
+WORKDIR $DIR
+COPY package.json .
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM node:18-alpine
+
+WORKDIR $DIR
+COPY --from=BUILDER $DIR/build .
+COPY --from=BUILDER $DIR/package.json .
+EXPOSE 3000
+
+CMD ["node", "index.js"]
+
+# Hint
+# Set server host to 0.0.0.0 by add --host to cli in package.json file
+
+# Build image
+# docker build . -t svelte-prod-image -f dockerfiles/Dockerfile.svelteapp_prod
+
+# Run container (map docker port and machine host port)
+# docker run -d -it --name container-svelte-prod-app -p 3000:3000 svelte-prod-image
+
+# Check logs
+# docker logs container-svelte-prod-app
+
+# Access the host
+# http://localhost:3000/
