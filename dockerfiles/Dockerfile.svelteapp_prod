@@ -2,6 +2,7 @@
 ARG DIR=/svelte-app-prod
 
 FROM node:18-alpine as BUILDER
+LABEL Developer="OTIS"
 
 WORKDIR $DIR
 COPY package.json .
@@ -15,6 +16,7 @@ WORKDIR $DIR
 COPY --from=BUILDER $DIR/build .
 COPY --from=BUILDER $DIR/package.json .
 EXPOSE 3000
+USER node:node
 
 CMD ["node", "index.js"]
 
