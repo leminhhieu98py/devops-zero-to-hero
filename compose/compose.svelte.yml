@@ -1,0 +1,11 @@
+# TOTO: still need to
+# 1. Rename file to `compose.yml`
+# 2. Move file to root folder
+# --> Need to resolve
+services:
+  svelte:
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile.svelteapp
+    ports:
+      - '5173:5173'
