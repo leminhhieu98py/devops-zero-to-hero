@@ -1,14 +1,11 @@
-# TOTO: still need to
-# 1. Rename file to `compose.yml`
-# 2. Move file to root folder
-# --> Need to resolve
 version: '1.0.0'
 name: 'svelte-dev'
 
 services:
   svelte:
     build:
-      context: ./dockerfiles
-      dockerfile: Dockerfile.svelteapp
+      # To define current workdir using context
+      context: ..
+      dockerfile: dockerfiles/Dockerfile.svelteapp
     ports:
       - '5173:5173'
